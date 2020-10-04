@@ -2,4 +2,4 @@
 
 ## Description
 
-    The source code for my stock portfolio website.
+    <!-- The source code for my stock portfolio website.  -->
