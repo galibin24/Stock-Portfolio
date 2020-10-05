@@ -4,10 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { StocksListComponent } from './stocks-list/stocks-list.component';
-import { StockItemComponent } from './stock-item/stock-item.component';
 
 @NgModule({
-  declarations: [AppComponent, StocksListComponent, StockItemComponent],
+  declarations: [AppComponent, StocksListComponent],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
