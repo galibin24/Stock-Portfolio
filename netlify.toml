@@ -3,8 +3,8 @@
   command = "ng build --prod"
 
 [[redirects]]
-  from = "/v8/*"
-  to = "https://query1.finance.yahoo.com"
+  from = "v8/*"
+  to = "https://query1.finance.yahoo.com/"
   status = 200
   force = true
   headers = {Access-Control-Allow-Origin = "*"}
