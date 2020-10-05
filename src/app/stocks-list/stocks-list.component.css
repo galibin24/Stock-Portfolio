@@ -1,0 +1,20 @@
+.hiddenRow {
+  padding: 0 4px !important;
+  background-color: #ffffff;
+  font-size: 20px;
+}
+h3 {
+  padding: 10px;
+  margin: 20px;
+}
+
+strong {
+  padding: 6px;
+}
+.table {
+  border: 1.6px solid #000000;
+}
+
+.accordian-body span {
+  color: #18df6b !important;
+}

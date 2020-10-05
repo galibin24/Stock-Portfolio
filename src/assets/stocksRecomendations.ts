@@ -6,6 +6,8 @@ export const stockRecommendations = [
     startDate: '2020-06-08',
     endDate: 'None',
     return: '',
+    description: 'HAHAHA MY FIRST DESCRIPTION',
+    collapseName: 'Team17',
   },
   {
     Name: 'Paradox Interactive',
@@ -14,6 +16,8 @@ export const stockRecommendations = [
     startDate: '2020-06-05',
     endDate: '',
     return: '',
+    description: 'HAHAHA MY FIRST DESCRIPTION',
+    collapseName: 'Paradox',
   },
   {
     Name: '11 bit Studios',
@@ -22,6 +26,8 @@ export const stockRecommendations = [
     startDate: '2020-06-08',
     endDate: '',
     return: '',
+    description: 'HAHAHA MY FIRST DESCRIPTION',
+    collapseName: 'bit',
   },
   {
     Name: 'BigBen Interactive',
@@ -30,6 +36,8 @@ export const stockRecommendations = [
     startDate: '2020-06-03',
     endDate: '',
     return: '',
+    description: 'HAHAHA MY FIRST DESCRIPTION',
+    collapseName: 'BigBen',
   },
   {
     Name: "Don't Nod Entertainment",
@@ -38,6 +46,8 @@ export const stockRecommendations = [
     startDate: '2020-06-09',
     endDate: '',
     return: '',
+    description: 'HAHAHA MY FIRST DESCRIPTION',
+    collapseName: 'Dont',
   },
   {
     Name: 'Remedy Entertainment ',
@@ -46,5 +56,7 @@ export const stockRecommendations = [
     startDate: '2020-06-05',
     endDate: '',
     return: '',
+    description: 'HAHAHA MY FIRST DESCRIPTION',
+    collapseName: 'Remedy',
   },
 ];

@@ -1,40 +1,55 @@
-<h2>My Stocks</h2>
-<ul>
-  <li *ngFor="let stock of stocks">
-    <app-stock-item [stock]="stock"></app-stock-item>
-  </li>
-</ul>
+<!-- <h3>My Stocks</h3> -->
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Company Name</th>
-      <th scope="col">Symbol</th>
-      <th scope="col">Current Price</th>
-      <th scope="col">Bought Price</th>
-      <th scope="col">Bought Date</th>
-      <th scope="col">Return</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+<div class="row justify-content-md-center">
+  <div class="col-sm-4.5">
+    <h3 class="text-primary border border-primary rounded">
+      Portfolio Return: <strong>{{ portfolioReturn }}</strong>
+    </h3>
+  </div>
+
+  <div class="col-sm-4.5">
+    <h3 class="text-secondary border border-secondary rounded">
+      S&P500 Return:<strong>{{ sp500Return }}</strong>
+    </h3>
+  </div>
+</div>
+<div>
+  <table class="table table-bordered table-hover">
+    <caption>
+      You can click on any stock to get descriptive reasoning for its selection.
+    </caption>
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Company Name</th>
+        <th scope="col">Symbol</th>
+        <th scope="col">Current Price</th>
+        <th scope="col">Bought Price</th>
+        <th scope="col">Bought Date</th>
+        <th scope="col">Return</th>
+      </tr>
+    </thead>
+    <tbody
+      data-toggle="collapse"
+      *ngFor="let stock of stocks"
+      [attr.data-target]="addCollapseSign(stock.collapseName)"
+    >
+      <tr>
+        <th scope="row">
+          {{ stock.Name }}
+        </th>
+        <td>{{ stock.Symbol }}</td>
+        <td>{{ stock.currentPrice }}</td>
+        <td>{{ stock.boughtPrice }}</td>
+        <td>{{ stock.startDate }}</td>
+        <td class="{{ stock.color }}">{{ stock.return }}</td>
+      </tr>
+      <tr class="p">
+        <td colspan="6" class="hiddenRow">
+          <div class="accordian-body collapse" id="{{ stock.collapseName }}">
+            {{ stock.description }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

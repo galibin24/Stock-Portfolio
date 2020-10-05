@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { stockRecommendations } from './../assets/stocksRecomendations';
 import { Stock } from './interfaces/stock';
 import { mapToMapExpression } from '@angular/compiler/src/render3/util';
-import { catchError, concatAll, map, mergeAll, tap } from 'rxjs/operators';
+import { catchError, concatAll, map } from 'rxjs/operators';
 import { ComplexOuterSubscriber } from 'rxjs/internal/innerSubscribe';
 
 @Injectable({
@@ -32,13 +32,22 @@ export class StockService {
     let currentPrice: number = stockPrices[stockPrices.length - 1];
 
     let stockReturn =
-      ((currentPrice / boughtPrice - 1) * 1000).toFixed(1).toString() + '%';
+      ((currentPrice / boughtPrice - 1) * 100).toFixed(1).toString() + '%';
+
+    let color;
+    if (stockReturn.includes('-')) {
+      color = 'table-danger';
+    } else {
+      color = 'table-success';
+    }
 
     let stockInfo = {
       ...recommendation,
       return: stockReturn,
       boughtPrice: boughtPrice.toFixed(1).toString(),
       currentPrice: currentPrice.toFixed(1).toString(),
+      color: color,
+      intReturn: ((currentPrice / boughtPrice - 1) * 100).toFixed(1),
     };
 
     return stockInfo;
@@ -53,11 +62,32 @@ export class StockService {
     return Date.now().toString();
   }
 
+  getPortfolioReturn() {
+    return forkJoin(this.getStocks());
+  }
+  getSP500Return() {
+    // ^GSPC
+    return this.getStockData(
+      '^GSPC',
+      this.dateToTimestamp('2020-06-03'),
+      this.currentDate()
+    ).pipe(
+      map((result) => {
+        let sp500Prices: number[] = result.indicators.adjclose[0].adjclose;
+
+        let boughtPrice: number = sp500Prices[0];
+        let currentPrice: number = sp500Prices[sp500Prices.length - 1];
+        return (
+          ((currentPrice / boughtPrice - 1) * 100).toFixed(1).toString() + '%'
+        );
+      })
+    );
+  }
   getStocks() {
     return stockRecommendations.map((reccomendation) =>
       this.getStockData(
-        'AAPL',
-        this.dateToTimestamp('2020-09-18'),
+        reccomendation.Symbol,
+        this.dateToTimestamp(reccomendation.startDate),
         this.currentDate()
       ).pipe(
         map((result) => {

@@ -1,14 +1,8 @@
-<div>
-  <p>
-    The price of <span>{{ stock.Name }}</span> is
+<!-- <!-- <tr> -->
 
-    <span>{{ stock.currentPrice }}</span>
-  </p>
-</div>
-
-<tr>
-  <th scope="row">1</th>
-  <td>Mark</td>
-  <td>Otto</td>
-  <td>@mdo</td>
-</tr>
+<th scope="row">{{ stock.Name }}</th>
+<th>{{ stock.Symbol }}</th>
+<td>{{ stock.currentPrice }}</td>
+<td>{{ stock.boughtPrice }}</td>
+<td>{{ stock.startDate }}</td>
+<td>{{ stock.return }}</td>
