@@ -9,8 +9,10 @@
 
 [[headers]]
   for = "/v8/*"
-  [headers.values]
+    [headers.values]
     Access-Control-Allow-Origin = "*"
+
+[[headers]]
   for = "/*.json"
     [headers.values]
     Access-Control-Allow-Origin = "*"
