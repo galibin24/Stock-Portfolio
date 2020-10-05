@@ -1,3 +1,8 @@
 [build]
   publish = "dist/Stock-Portfolio"
   command = "ng build --prod"
+
+[[headers]]
+  for = "/v8/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
