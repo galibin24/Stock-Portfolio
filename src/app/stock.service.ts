@@ -12,7 +12,7 @@ export class StockService {
   constructor(private http: HttpClient) {}
 
   getStockData(ticker: string, startDate: string, endDate: string) {
-    const stockUrl: string = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?period1=${startDate}&period2=${endDate}&interval=1d`;
+    const stockUrl: string = `/v8/finance/chart/${ticker}?period1=${startDate}&period2=${endDate}&interval=1d`;
     console.log(stockUrl);
     return (
       this.http
