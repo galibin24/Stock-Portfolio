@@ -1,13 +1,11 @@
 [build]
   publish = "dist/Stock-Portfolio"
   command = "ng build --prod"
+
 [[redirects]]
   from = "/v8/*"
   to = "https://query1.finance.yahoo.com"
   status = 200
-  
-
-[[headers]]
-  for = "/v8/**"
-    [headers.values]
-    Access-Control-Allow-Origin = "*"
+  force = true
+  headers = {Access-Control-Allow-Origin: "*"}
+    
