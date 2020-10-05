@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { observable, Observable, of, forkJoin, from } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { stockRecommendations } from './../assets/stocksRecomendations';
-import { Stock } from './interfaces/stock';
-import { mapToMapExpression } from '@angular/compiler/src/render3/util';
-import { catchError, concatAll, map } from 'rxjs/operators';
-import { ComplexOuterSubscriber } from 'rxjs/internal/innerSubscribe';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -66,7 +63,6 @@ export class StockService {
     return forkJoin(this.getStocks());
   }
   getSP500Return() {
-    // ^GSPC
     return this.getStockData(
       '^GSPC',
       this.dateToTimestamp('2020-06-03'),
@@ -97,10 +93,3 @@ export class StockService {
     );
   }
 }
-
-// https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?period1={StartDate}&period1={endDate}&interval=1d
-// period1 - startdate
-// period2 - enddate
-//
-// https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?range=1y&interval=1d
-// 'https://query1.finance.yahoo.com/v8/finance/chart/AAPL'
