@@ -1,4 +1,0 @@
-[build]
-  publish = "dist/Stock-Portfolio"
-  command = "ng build --prod"
-
