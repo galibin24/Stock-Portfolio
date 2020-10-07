@@ -12,17 +12,24 @@ export class StockService {
   constructor(private http: HttpClient) {}
 
   getStockData(ticker: string, startDate: string, endDate: string) {
-    const stockUrl: string = `/v8/finance/chart/${ticker}?period1=${startDate}&period2=${endDate}&interval=1d`;
+    const stockUrl: string = '/api/';
     console.log(stockUrl);
     return (
       this.http
         // TODO write better type
-        .get<any>(stockUrl)
+        .get<any>(stockUrl, {
+          params: {
+            ticker,
+            startDate,
+            endDate,
+          },
+        })
         .pipe(map((result) => result.chart.result[0]))
     );
   }
 
   processStockData(stockData, recommendation) {
+    console.log(stockData);
     let stockPrices: number[] = stockData.indicators.adjclose[0].adjclose;
 
     let boughtPrice: number = stockPrices[0];
