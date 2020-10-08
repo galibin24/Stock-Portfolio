@@ -1,18 +1,14 @@
-# FROM node:12.7-alpine AS compile-image
+FROM node:12.7-alpine AS compile-image
 
-# WORKDIR /app
+WORKDIR /app
 
-# COPY package.json package-lock.json ./
-# RUN npm install
+COPY package.json package-lock.json ./
+RUN npm install
 
-# COPY . ./
-# RUN npm run build -- --prod
+COPY . ./
+RUN npm run build -- --prod
 
 FROM nginx:alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=compile-image /app/dist/Stock-Portfolio /usr/share/nginx/html
 
-COPY ../letsencrypt/live/nikitagalibinstocks.tk /etc/nginx/certs
-COPY ../Stock-Portfolio/nginx.conf /etc/nginx/nginx.conf
-COPY ../Stock-Portfolio/dist/Stock-Portfolio /usr/share/nginx/html
-
-EXPOSE 443
-EXPOSE 80
