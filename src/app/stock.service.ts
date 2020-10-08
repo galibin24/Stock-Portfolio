@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 import { stockRecommendations } from './../assets/stocksRecomendations';
 import { map } from 'rxjs/operators';
@@ -12,20 +13,18 @@ export class StockService {
   constructor(private http: HttpClient) {}
 
   getStockData(ticker: string, startDate: string, endDate: string) {
-    const stockUrl: string = '/api/';
+    // console.log(`http://${environment.apiUrl}/api/`);
+    const stockUrl: string = `${environment.apiUrl}/api/`;
     console.log(stockUrl);
-    return (
-      this.http
-        // TODO write better type
-        .get<any>(stockUrl, {
-          params: {
-            ticker,
-            startDate,
-            endDate,
-          },
-        })
-        .pipe(map((result) => result.chart.result[0]))
-    );
+    return this.http
+      .get<any>(stockUrl, {
+        params: {
+          ticker,
+          startDate,
+          endDate,
+        },
+      })
+      .pipe(map((result) => result.chart.result[0]));
   }
 
   processStockData(stockData, recommendation) {
